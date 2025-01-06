@@ -34,3 +34,18 @@ app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
 
+// Function to send a request to the /api/control endpoint
+function controlDevice(pin, value) {
+    // Use fetch to send a GET request to the Vercel API
+    fetch(`https://web-capstone.vercel.app/api/control?pin=${pin}&value=${value}`)
+        .then(response => response.text())
+        .then(data => {
+            console.log(`Control response: ${data}`);
+            // Optionally, update the button text or state based on the response
+        })
+        .catch(error => {
+            console.error('Error controlling device:', error);
+        });
+}
+
+
