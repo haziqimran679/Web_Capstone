@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agriculture Control Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #e8f5e9;
+        }
+        h1 {
+            color: #388e3c;
+        }
+        .control-panel {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .control-group {
+            margin: 10px;
+            padding: 15px;
+            border: 2px solid #81c784;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #388e3c;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2e7d32;
+        }
+    </style>
+    <script>
+        async function controlDevice(pin, value) {
+            const response = await fetch(`/control?pin=${pin}&value=${value}`);
+            const result = await response.text();
+            alert(result);
+        }
+    </script>
+</head>
+<body>
+    <h1>Agriculture Control Panel</h1>
+    <div class="control-panel">
+        <div class="control-group">
+            <h3>Pump-Valve 1</h3>
+            <button onclick="controlDevice('V1', 1)">Turn On</button>
+            <button onclick="controlDevice('V1', 0)">Turn Off</button>
+        </div>
+        <div class="control-group">
+            <h3>Pump-Valve 2</h3>
+            <button onclick="controlDevice('V2', 1)">Turn On</button>
+            <button onclick="controlDevice('V2', 0)">Turn Off</button>
+        </div>
+        <div class="control-group">
+            <h3>Pump-Valve 3</h3>
+            <button onclick="controlDevice('V3', 1)">Turn On</button>
+            <button onclick="controlDevice('V3', 0)">Turn Off</button>
+        </div>
+    </div>
+</body>
+</html>
