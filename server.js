@@ -41,6 +41,15 @@ function controlDevice(pin, value) {
         .then(response => response.text())
         .then(data => {
             console.log(`Control response: ${data}`);
+
+              // Update the button text to indicate status
+              const button = document.getElementById(`pump-valve-${pin}`);
+              if (value === 1) {
+                  button.innerHTML = `Turn Off ${pin}`;
+              } else {
+                  button.innerHTML = `Turn On ${pin}`;
+              }
+              
             // Optionally, update the button text or state based on the response
         })
         .catch(error => {
